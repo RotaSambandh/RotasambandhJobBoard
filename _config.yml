@@ -1,0 +1,48 @@
+
+# Site settings
+title: RotaSambandh Job Board
+subtitle: "Find Your Next Job"
+url: "https://jobs.rotasambandh.com" # the base hostname & protocol for your site
+# baseurl: "/the/subpath/of/your/site" # Set this value to "" if you want your site to be root
+baseurl: ""
+timezone: Asia/Kolkata
+
+description: RotaSambandh Job Board brings the best opportunites for the Rotaractors from the across the industries and the Rotary Rotaract Fraternity.
+og_img: /img/logo_round.png
+
+# Theme Colour: #00D363
+# Build settings
+markdown: kramdown
+# highlighter: rouge
+permalink: jobs/:year-:month-:day-:title/
+
+plugins:
+  - jekyll-sitemap
+  - jekyll-feed
+  - jekyll-archives
+
+compress_html:
+  clippings: []
+  comments: []
+  endings: []
+  ignore:
+    envs: []
+  blanklines: false
+  profile: false
+  startings: []
+  
+# Archives
+jekyll-archives:
+  enabled:
+    - categories
+    - tags
+  layout: archive
+  permalinks:
+    category: '/jobs/:name/'
+    tag: '/jobs/:name/'
+
+include:
+  - _redirects
+
+# exclude:
+#   - README.md

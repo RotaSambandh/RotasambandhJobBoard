@@ -1,0 +1,40 @@
+---
+layout: default
+---
+
+    <!-- bradcam_area  -->
+    <div class="bradcam_area bradcam_bg_1">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="bradcam_text">
+                        <h3>{{page.title | capitalize | replace: "-"," "}} Jobs</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ bradcam_area  -->
+
+    <!-- job_listing_area_start  -->
+    <div class="job_listing_area plus_padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="job_lists m-0">
+                        <div class="row">
+                            {% assign aposts = page.posts | where: 'active', 'true' | sort: 'date' | reverse %}
+                            {% for post in aposts %}
+
+                            {% include postbox.html %}
+                        
+                            {% endfor %}
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- job_listing_area_end  -->
+</div>

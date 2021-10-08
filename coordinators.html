@@ -1,0 +1,40 @@
+---
+layout: default
+title: Coordinators
+permalink: coordinators
+---
+
+    <!-- bradcam_area  -->
+    <div class="bradcam_area bradcam_bg_1">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="bradcam_text">
+                        <h3>Our Coordinators</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ bradcam_area  -->
+
+    <!-- featured_candidates_area_start  -->
+    <div class="featured_candidates_area candidate_page_padding">
+        <div class="container">
+            <div class="row justify-content-around">
+                {% for person in site.data.info.coordinators %}
+                <div class="col-md-6 col-lg-3">
+                    <div class="single_candidates text-center">
+                        <div class="thumb">
+                            <img src="{{person.image | relative_url}}" alt="{{person.name}}">
+                        </div>
+                        <a href="{{person.url}}" target="_blank"><h4>{{person.name}}</h4></a>
+                        <p>{{person.title}}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+    <!-- featured_candidates_area_end  -->

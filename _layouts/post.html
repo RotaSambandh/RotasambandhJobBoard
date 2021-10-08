@@ -1,0 +1,153 @@
+---
+layout: default
+---
+
+    <!-- bradcam_area  -->
+    <div class="bradcam_area bradcam_bg_1">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="bradcam_text">
+                        <h3>{{page.title}}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ bradcam_area  -->
+
+    <div class="job_details_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="job_details_header">
+                        <div class="single_jobs white-bg d-flex justify-content-between">
+                            <div class="jobs_left d-flex align-items-center">
+                                <div class="thumb">
+                                    <img src="{{site.baseurl}}/img/round.png" alt="RotaSambandh Job Board">
+                                </div>
+                                <div class="jobs_conetent">
+                                    <a><h4>{{page.title}}</h4></a>
+                                    <div class="links_locat d-flex align-items-center">
+                                        <div class="location">
+                                            <p> <i class="fa fa-map-marker"></i> {{page.location}}</p>
+                                        </div>
+                                        <div class="location">
+                                            <p> <i class="fa fa-clock-o"></i> {% for tag in page.tags %}{{ tag | capitalize | replace: "-"," "}}{% if forloop.last %}{% else %}, {% endif %}{% endfor %}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="jobs_right">
+                                <div class="apply_now">
+                                    {% if page.active %}
+                                    <a class="boxed-btn5 w-100" target="_blank" href="{{page.form_link}}">Apply Now</a>
+                                    {% else %}
+                                    <a class="boxed-btn-d w-100">Closed</a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="descript_wrap white-bg">
+                        <div class="single_wrap">
+                            {{content}}
+                        </div>
+                        <div class="single_wrap">
+                            <div class="apply_now">
+                                {% if page.active %}
+                                <a class="boxed-btn5 w-100" target="_blank" href="{{page.form_link}}">Apply Now</a>
+                                {% else %}
+                                <a class="boxed-btn-d w-100">Closed</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+             
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="job_sumary">
+                        <div class="summery_header">
+                            <h3>Job Summary</h3>
+                        </div>
+                        <div class="job_content">
+                            <ul>
+                                <li>Published on: <span>{{ page.date | date: '%d %B %Y' }}</span></li>
+                                <li>Deadline: <span>{% if page.deadline == "" %}Not Specified{% else %}{{ page.deadline | date: '%d %B %Y' }}{% endif %}</span></li>
+                                {% if page.vacancies != "" %}<li>Vacancy: <span>{{page.vacancies}} Position{% if page.vacancies > 1 %}s{% endif %}</span></li>{% endif %}
+                                {% if page.salary != "" %}<li>Salary: <span>{{page.salary}}</span></li>{% endif %}
+                                {% if page.location != "" %}<li>Location: <span>{{page.location}}</span></li>{% endif %}
+                                <li>Job Nature: <span>{% for tag in page.tags %}{{ tag | capitalize | replace: "-"," "}}{% if forloop.last %}{% else %}, {% endif %}{% endfor %}</span></li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+                    <div class="single_wrap">
+                        <div class="apply_now">
+                            {% if page.active %}
+                            <a class="boxed-btn5 w-100" target="_blank" href="{{page.form_link}}">Apply Now</a>
+                            {% else %}
+                            <a class="boxed-btn-d w-100">Closed</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+
+                    <div class="share_wrap d-flex">
+                        <span>Share at:</span>
+                        <ul>
+                            <li><a target="_blank" href="https://facebook.com/sharer.php?u={{ page.url | absolute_url }}" onclick="window.open(this.href, 'facebook-share', 'width=550,height=435');return false;"> <i class="fa fa-facebook"></i></a> </li>
+                            <li><a target="_blank" href="https://twitter.com/intent/tweet?text={{ page.title | uri_escape }}&url={{ page.url | absolute_url }}" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;"> <i class="fa fa-twitter"></i></a> </li>
+                            <li><a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url={{ page.url | absolute_url }}" onclick="window.open(this.href, 'width=550,height=435');return false;"> <i class="fa fa-linkedin"></i></a> </li>
+                            <li><a target="_blank" href="mailto:?subject=Apply for {{ page.title }}&amp;body=Follow the link to apply for {{page.title}} - {{page.url | absolute_url}}"
+                                title="Saring {{page.title}} Job via. Email" > <i class="fa fa-envelope"></i></a> </li>
+                        </ul>
+                    </div>
+
+                    <div class="share_wrap">
+                        <span>Related Jobs:</span>
+                        <hr style="border-top: 0.2px dashed rgb(211, 210, 210)">
+                       
+                        {% assign maxRelated = 10 %}
+                        {% assign minCommonTags =  2 %}
+                        {% assign maxRelatedCounter = 0 %}
+                        
+                        {% assign posts = site.posts | where: 'active', 'true' | sort: 'date' | reverse %}
+
+                        {% for post in posts %}
+                        
+                            {% assign sameTagCount = 0 %}
+                            {% assign commonTags = '' %}
+                        
+                            {% for category in post.categories %}
+                              {% if post.url != page.url %}
+                                {% if page.categories contains category %}
+                                  {% assign sameTagCount = sameTagCount | plus: 1 %}
+                                  {% capture tagmarkup %} <span class="label label-default">{{ category }}</span> {% endcapture %}
+                                  {% assign commonTags = commonTags | append: tagmarkup %}
+                                {% endif %}
+                              {% endif %}
+                            {% endfor %}
+                        
+                            {% if sameTagCount >= minCommonTags %}
+                              <a href="{{ post.url | relative_rul }}">{{ post.title }} <i class="fa fa-angle-double-right"></i></a>
+                              <hr style="border-top: 1px dashed #c5c5c5">
+                              {% assign maxRelatedCounter = maxRelatedCounter | plus: 1 %}
+                              {% if maxRelatedCounter >= maxRelated %}
+                                {% break %}
+                              {% endif %}
+                            {% endif %}
+                        
+                        {% endfor %}
+
+                        {% assign posts = null %}
+
+                        
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>

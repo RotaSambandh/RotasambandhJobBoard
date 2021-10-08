@@ -1,0 +1,148 @@
+---
+layout: default
+---
+    <!-- slider_area_start -->
+    <div class="slider_area">
+        <div class="single_slider  d-flex align-items-center slider_bg_1">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-7 col-md-6">
+                        <div class="slider_text">
+                            <h5 class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".2s">{{site.posts.size}} Total Jobs listed</h5>
+                            <h3 class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".3s">Find your Next Job</h3>
+                            <p class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".4s">We bring the best of opportunities for Rotaractors</p>
+                            <div class="sldier_btn wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".5s">
+                                <a href="{{site.baserul}}/jobs/" class="boxed-btn3">Browse Jobs</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ilstration_img wow fadeInRight d-none d-lg-block text-right" data-wow-duration="1s" data-wow-delay=".2s">
+            <img src="{{site.baseurl}}/img/banner/illustration.png" alt="RotaSambandh Jobs">
+        </div>
+    </div>
+    <!-- slider_area_end -->
+
+    <!-- catagory_area -->
+    <div class="catagory_area">
+        <div class="container">
+            <div class="row cat_search">
+                <div class="col-lg-9 col-md-12">
+                    <div class="single_input">
+                        <input type="text" placeholder="Search keyword">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-12">
+                    <div class="job_btn">
+                        <a href="#" class="boxed-btn3">Find Job</a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="popular_search d-flex align-items-center">
+                        <span>Job Nature:</span>
+                        <ul>
+                            <li><a href="{{site.baseurl}}/jobs/full-time/">Full Time</a></li>
+                            <li><a href="{{site.baseurl}}/jobs/part-time/">Part Time</a></li>
+                            <li><a href="{{site.baseurl}}/jobs/intership/">Internship</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ catagory_area -->
+
+    <!-- popular_catagory_area_start  -->
+    <div class="popular_catagory_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section_title mb-40">
+                        <h3>Popular Categories</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                {% assign tags_list = site.categories %}
+                    {% if tags_list.first[0] == null %}
+                    {% for tag in tags_list %}
+                        <div class="col-lg-4 col-xl-3 col-md-6">
+                            <div class="single_catagory">
+                                <a href="{{tag.url}}/jobs/{{tag}}"><h4>{{ tag | capitalize | replace: "-"," "}}</h4></a>
+                                <p> <span>{{site.tags[tag].size}}</span> Available position{% if site.tags[tag].size > 1 %}s{% endif %}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    {% else %}
+                    {% for tag in tags_list %}
+                        <div class="col-lg-4 col-xl-3 col-md-6">
+                            <div class="single_catagory">
+                                <a href="{{ site.baseurl }}/jobs/{{ tag[0] | replace: " ","-" }}"><h4>{{ tag[0] | capitalize | replace: "-"," "}}</h4></a>
+                                <p> <span>{{tag[1].size}}</span> Available position{% if tag[1].size > 1 %}s{% endif %}</p>
+                            </div>
+                        </div>
+                {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <!-- popular_catagory_area_end  -->
+
+    <!-- job_listing_area_start  -->
+    <div class="job_listing_area">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="section_title">
+                        <h3>Recent Listing</h3>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="brouse_job text-right">
+                        <a href="{{site.baseurl}}/jobs/" class="boxed-btn4">Browse More Jobs</a>
+                    </div>
+                </div>
+            </div>
+            <div class="job_lists">
+                <div class="row">
+                    {% assign posts = site.posts | where: 'active', 'true' | sort: 'date' | reverse %}
+                    {% for post in posts limit: 10 %}
+                        {% include postbox.html %}
+                    {% endfor %}
+                    {% assign posts = null %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- job_listing_area_end  -->
+
+    <!-- job_searcing_wrap  -->
+    <div class="job_searcing_wrap overlay">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 offset-lg-1 col-md-6">
+                    <div class="searching_text">
+                        <h3>Looking for a Job?</h3>
+                        <p>We bring the best of opportunities for Rotaractors </p>
+                        <a href="{{site.baseurl}}/jobs/" class="boxed-btn3">Browse Jobs</a>
+                    </div>
+                </div>
+                <div class="col-lg-5 offset-lg-1 col-md-6">
+                    <div class="searching_text">
+                        <h3>Looking for a Candidate?</h3>
+                        <p>Hire from poll of vibrant & talented Rotaractors </p>
+                        <a href="#" class="boxed-btn3">Post a Job</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- job_searcing_wrap end  -->
+
+    {% if site.data.info.testimonials.size > 0 %}
+    {% include testimonial.html %}
+    {% endif %}
