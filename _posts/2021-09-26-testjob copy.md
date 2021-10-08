@@ -3,7 +3,7 @@ layout: post
 title:  "Test Engineet 2"
 date:   2021-09-26
 deadline: ""
-active: false
+active: true
 vacancies: 2
 salary: "20 lpa"
 location: "Test Location"
