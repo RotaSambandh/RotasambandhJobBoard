@@ -8,7 +8,7 @@ layout: default
                 <div class="row align-items-center">
                     <div class="col-lg-7 col-md-6">
                         <div class="slider_text">
-                            <h5 class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".2s">{{site.posts.size}} Total Jobs listed</h5>
+                            <h5 class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".2s">{{site.posts.size}} total Jobs listed</h5>
                             <h3 class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".3s">Find your Next Job</h3>
                             <p class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".4s">We bring the best of opportunities for Rotaractors</p>
                             <div class="sldier_btn wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".5s">
@@ -25,36 +25,39 @@ layout: default
     </div>
     <!-- slider_area_end -->
 
-    <!-- catagory_area -->
-    <div class="catagory_area">
-        <div class="container">
-            <div class="row cat_search">
-                <div class="col-lg-9 col-md-12">
-                    <div class="single_input">
-                        <input type="text" placeholder="Search keyword">
+        <!-- catagory_area -->
+        <div class="catagory_area">
+            <div class="container">
+                <form action="{{ site.baseurl }}/search" method="get">
+                <div class="row cat_search">
+                    
+                    <div class="col-lg-9 col-md-12">
+                        <div class="single_input">
+                            <input type="text" name="q" placeholder="Search keyword" required>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-12">
+                        <div class="job_btn">
+                            <a type="submit" class="boxed-btn3">Search Jobs</a>
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-12">
-                    <div class="job_btn">
-                        <a href="#" class="boxed-btn3">Find Job</a>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="popular_search d-flex align-items-center">
-                        <span>Job Nature:</span>
-                        <ul>
-                            <li><a href="{{site.baseurl}}/jobs/full-time/">Full Time</a></li>
-                            <li><a href="{{site.baseurl}}/jobs/part-time/">Part Time</a></li>
-                            <li><a href="{{site.baseurl}}/jobs/intership/">Internship</a></li>
-                        </ul>
+            </form>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="popular_search d-flex align-items-center">
+                            <span>Job Nature:</span>
+                            <ul>
+                                <li><a href="{{site.baseurl}}/jobs/full-time/">Full Time</a></li>
+                                <li><a href="{{site.baseurl}}/jobs/part-time/">Part Time</a></li>
+                                <li><a href="{{site.baseurl}}/jobs/intership/">Internship</a></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!--/ catagory_area -->
+        <!--/ catagory_area -->
 
     <!-- popular_catagory_area_start  -->
     <div class="popular_catagory_area">
@@ -73,7 +76,7 @@ layout: default
                         <div class="col-lg-4 col-xl-3 col-md-6">
                             <div class="single_catagory">
                                 <a href="{{tag.url}}/jobs/{{tag}}"><h4>{{ tag | capitalize | replace: "-"," "}}</h4></a>
-                                <p> <span>{{site.tags[tag].size}}</span> Available position{% if site.tags[tag].size > 1 %}s{% endif %}</p>
+                                <p> <span>{{site.tags[tag].size}}</span> Job{% if site.tags[tag].size > 1 %}s{% endif %} Published</p>
                             </div>
                         </div>
                     {% endfor %}
@@ -82,7 +85,7 @@ layout: default
                         <div class="col-lg-4 col-xl-3 col-md-6">
                             <div class="single_catagory">
                                 <a href="{{ site.baseurl }}/jobs/{{ tag[0] | replace: " ","-" }}"><h4>{{ tag[0] | capitalize | replace: "-"," "}}</h4></a>
-                                <p> <span>{{tag[1].size}}</span> Available position{% if tag[1].size > 1 %}s{% endif %}</p>
+                                <p> <span>{{tag[1].size}}</span> Job{% if tag[1].size > 1 %}s{% endif %} Published</p>
                             </div>
                         </div>
                 {% endfor %}
