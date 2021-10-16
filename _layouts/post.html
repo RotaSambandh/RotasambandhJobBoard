@@ -24,7 +24,7 @@ layout: default
                         <div class="single_jobs white-bg d-flex justify-content-between">
                             <div class="jobs_left d-flex align-items-center">
                                 <div class="thumb">
-                                    <img src="{{site.baseurl}}/img/round.png" alt="RotaSambandh Job Board">
+                                    <img src="{% if page.company == "" %}{{site.baseurl}}/img/round.png{% else %}{{site.data.partners[page.company].img | relative_url}}{% endif %}" style="max-width: 50px; max-height: 50px;" alt="{% if page.company == "" %}RotaSambandh Job Board{% else %}{{site.data.partners[page.company].name}}{% endif %}">
                                 </div>
                                 <div class="jobs_conetent">
                                     <a><h4>{{page.title}}</h4></a>

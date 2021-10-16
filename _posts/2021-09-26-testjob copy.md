@@ -4,6 +4,7 @@ title:  "Test Engineet 2"
 date:   2021-09-26
 deadline: ""
 active: true
+company: ""
 vacancies: 2
 salary: "20 lpa"
 location: "Test Location"
